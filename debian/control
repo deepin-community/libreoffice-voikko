@@ -1,0 +1,47 @@
+Source: libreoffice-voikko
+Section: text
+Priority: optional
+Maintainer: Timo Jyrinki <timo@debian.org>
+Build-Depends: debhelper (>= 13.0.0),
+               dh-python,
+               libreoffice-core,
+               libvoikko-dev (>= 4.0),
+               python3,
+               python3-libvoikko (>= 4.0),
+               unzip,
+               zip,
+Standards-Version: 4.6.0.1
+Homepage: http://voikko.sourceforge.net/
+Vcs-Git: https://salsa.debian.org/debian/libreoffice-voikko.git
+Vcs-Browser: https://salsa.debian.org/debian/libreoffice-voikko
+
+Package: libreoffice-voikko
+Architecture: any
+Depends: libreoffice-core,
+         python3-libvoikko (>= 4.0),
+         python3-uno,
+         voikko-fi,
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends},
+Recommends: libreoffice | libreoffice-writer | libreoffice-calc | libreoffice-impress | libreoffice-draw,
+Enhances: libreoffice,
+Provides: libreoffice-grammarcheck-fi,
+          libreoffice-hyphenation-fi,
+          libreoffice-spellcheck-fi,
+Description: Spellchecker, grammar checker and hyphenator for LibreOffice
+ LibreOffice is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains a libreoffice-voikko, a multi language spellchecker,
+ grammar checker and hyphenator extension for LibreOffice. It uses
+ libvoikko for all linguistic operations.
+ .
+ Based on the configuration of libvoikko, spell checking is supported for
+ multiple languages. Other features are currently available only for
+ Finnish.
+ .
+ NOTE: Usually spell-checking, grammar checking and hyphenation should be
+ automatically activated after installing this package. If this is not the
+ case, go to "Writing Aids" settings in LibreOffice and activate Voikko
+ components manually.

@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	VOIKKO_DEBUG = FULL
+else
+	VOIKKO_DEBUG = NO
+endif
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_BUILD_HARDENING=1
+
+LC_ALL := C.UTF-8
+export LC_ALL
+
+%:
+	dh $@ --with=python3
+
+override_dh_auto_clean:
+	$(MAKE) VOIKKO_DEBUG=$(VOIKKO_DEBUG) clean
+
+override_dh_auto_build:
+	$(MAKE) VOIKKO_DEBUG=$(VOIKKO_DEBUG) oxt
+
+override_dh_auto_install:
+	mkdir -p debian/tmp/usr/lib/libreoffice/share/extensions/voikko
+	unzip -d debian/tmp/usr/lib/libreoffice/share/extensions/voikko/ build/voikko.oxt
+
+override_dh_auto_test:
